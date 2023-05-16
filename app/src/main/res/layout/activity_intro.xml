@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.IntroActivity"
+    android:background="@color/blue_bg"
+    android:orientation="vertical"
+    >
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/welcome"
+        android:textSize="30sp"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
+    <TextView
+        android:id="@+id/existing_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+         android:text="@string/existing_user"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="100dp"
+         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/welcome"/>
+
+      <Button
+          android:id="@+id/btn_log_in_intro"
+          android:layout_width="310dp"
+          android:layout_height="45dp"
+          android:layout_gravity="center"
+          android:background="@drawable/white_border_shape_button_rounded"
+          android:foreground="?attr/selectableItemBackground"
+          android:gravity="center"
+          android:layout_marginTop="5dp"
+          android:text="@string/log_in"
+          android:textColor="@color/blue_bg"
+          android:textSize="20sp"
+          app:layout_constraintTop_toBottomOf="@id/existing_user"
+          app:layout_constraintStart_toStartOf="parent"
+          app:layout_constraintEnd_toEndOf="parent"
+          android:elevation="6dp"
+          android:translationZ="6dp"
+          />
+
+    <TextView
+        android:id="@+id/New_user"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/new_user"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btn_log_in_intro"/>
+
+    <Button
+        android:id="@+id/btn_sign_up_intro"
+        android:layout_width="310dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:background="@drawable/white_border_shape_button_rounded"
+        android:foreground="?attr/selectableItemBackground"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:text="@string/sign_up"
+        android:textColor="@color/blue_bg"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/New_user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
+
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

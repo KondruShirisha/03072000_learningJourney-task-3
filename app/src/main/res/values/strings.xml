@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">My Application_task3</string>
+    <string name="log_in">Log in</string>
+    <string name="welcome_back">Welcome Back</string>
+    <string name="create_account">Create Account</string>
+    <string name="username">Username</string>
+    <string name="i_agree_to_the_terms_of_services">I Agree to the terms of services</string>
+    <string name="password">Password</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="terms_of_services">Terms of Services</string>
+    <string name="i_agree_to_the">I Agree to the</string>
+    <string name="re_enter_password">Re-enter Password</string>
+    <string name="my_app">My App</string>
+    <string name="view_latest_location">View Latest location</string>
+    <string name="view_gallery">View Gallery</string>
+    <string name="existing_user">Existing User</string>
+    <string name="welcome">Welcome</string>
+    <string name="new_user">New User</string>
+    <string name="gallery">Gallery</string>
+    <string name="upload_image">Upload Image</string>
+    <string name="update_location">Update Location</string>
+    <string name="map">Map</string>
+    <string name="add_image">Add Image</string>
+    <string name="btn_upload_image_gallery">Upload Image</string>
+    <string name="choose_image">Choose Image</string>
+</resources>

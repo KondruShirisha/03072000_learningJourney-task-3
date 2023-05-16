@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.MapActivity"
+    android:orientation="vertical">
+
+    <!-- Toolbar -->
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_map_activity"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="4dp"
+        android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        app:layout_constraintTop_toTopOf="parent">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/map"
+            android:textColor="@color/heading_gray"
+            android:textSize="20sp"
+            android:layout_gravity="center"/>
+
+    </androidx.appcompat.widget.Toolbar>
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/mapView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="8dp"
+        android:apiKey=""
+        android:background="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/toolbar_map_activity"
+        app:layout_constraintBottom_toTopOf="@id/addressTitle"
+        />
+
+    <TextView
+        android:id="@+id/addressTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Address"
+        android:textStyle="bold"
+        android:textSize="13dp"
+        android:textColor="#C2C2C2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/mapView"
+        app:layout_constraintBottom_toTopOf="@id/addressText"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="30dp"
+       />
+
+    <TextView
+       android:id="@+id/addressText"
+        android:layout_width="296dp"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16dp"
+        android:textColor="#000000BC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/addressTitle"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="7dp"
+        />
+     <ImageView
+         android:id="@+id/location_icon"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:src="@drawable/location"
+         app:layout_constraintStart_toEndOf="@id/addressText"
+         app:layout_constraintTop_toBottomOf="@id/addressTitle"
+         app:layout_constraintEnd_toEndOf="parent"
+         />
+
+    <TextView
+        android:id="@+id/dateTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/addressText"
+        android:text="Date and Time"
+        android:textStyle="bold"
+        android:textSize="13dp"
+        android:textColor="#C2C2C2"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="20dp"/>
+
+    <TextView
+        android:id="@+id/dateTimeText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textSize="16sp"
+        android:textColor="#000000BC"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/dateTime"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="7dp"/>
+
+    <Button
+        android:id="@+id/btn_update_location_map_activity"
+        android:layout_width="310dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center"
+        android:elevation="6dp"
+        android:background="@drawable/blue_bg_button"
+        android:gravity="center"
+        android:text="@string/update_location"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:translationZ="6dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="78dp"
+        />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
