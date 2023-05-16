@@ -61,20 +61,17 @@ class LoginActivity : BaseActivity() {
         val password: String = passwordInputLogIn.text.toString().trim { it <= ' ' }
 
         if(validateForm(email, password)){
-          //  showProgressDialog(resources.getString(R.string.please_wait))
 
             // Sign-In using FirebaseAuth
             FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener { task ->
-                    //when getInstance is done with sign .hide progress bar
-                  //  hideProgressDialog()
+
                     if (task.isSuccessful) {
                         // Calling the FirestoreClass signInUser function to get the data of user from database.
                        // FirestoreClass().loadUserData(this@SignInActivity)
 
                         Log.d("sign in","signInwithemail:success")
 
-                        //after login clicked it should go to MyApp Activity
                         startActivity(Intent(this, MyAppActivity::class.java))
 
 
@@ -94,9 +91,8 @@ class LoginActivity : BaseActivity() {
     }
 
 
-    /**
-     * A function to validate the entries of a new user.
-     */
+
+     /* A function to validate entries of new user  */
     private fun validateForm( email: String, password: String, ): Boolean {
         return when {
 
