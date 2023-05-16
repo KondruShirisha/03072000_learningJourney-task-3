@@ -51,10 +51,8 @@ private lateinit var buttonSignUp:Button
         toolbarSignUp.setNavigationOnClickListener { onBackPressed() }
     }
 
-    /**
-     * A function to register a user to our app using the Firebase.
-     * For more details visit: https://firebase.google.com/docs/auth/android/custom-auth
-     */
+
+    /* function to register user to our app using Firebase.*/
     private fun registerUser() {
         val name: String = usernameInputSignUp.text.toString().trim() { it <= ' ' }
         val email: String = emailInputSignUp.text.toString().trim { it <= ' ' }
@@ -75,7 +73,7 @@ private lateinit var buttonSignUp:Button
 
                         val user = User(firebaseUser.uid, name, registeredEmail, reenterPassword)
 
-                        // call the registerUser function of FirestoreClass to make an entry in the database.
+                        // call the registerUser function of FirestoreClass to make entry in database.
                         FireStoreClass().registerUser(this, user)
                     } else {
                         Toast.makeText(this, task.exception!!.message, Toast.LENGTH_SHORT)

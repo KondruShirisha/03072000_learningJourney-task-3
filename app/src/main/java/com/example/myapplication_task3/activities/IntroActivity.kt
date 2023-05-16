@@ -1,7 +1,6 @@
 package com.example.myapplication_task3.activities
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import com.example.myapplication_task3.R

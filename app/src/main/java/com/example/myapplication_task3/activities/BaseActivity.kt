@@ -1,6 +1,5 @@
 package com.example.myapplication_task3.activities
 
-import android.app.Dialog
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
@@ -30,12 +29,7 @@ open class BaseActivity : AppCompatActivity() {
         snackBar.show()
     }
 
-   /* override fun onDestroy() {
-        super.onDestroy()
-        if (::mProgressDialog.isInitialized && mProgressDialog.isShowing) {
-            mProgressDialog.dismiss()
-        }
-    }*/
+
 
 
 }

@@ -20,8 +20,6 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
-import org.checkerframework.checker.index.qual.GTENegativeOne
-import java.io.IOException
 import java.util.*
 
 class GalleryActivity : BaseActivity() {
@@ -71,7 +69,7 @@ class GalleryActivity : BaseActivity() {
         // Load images from Firebase
         loadImages()
 
-        // Set click listener for Upload Image button
+        // Set clickl istener for Upload Image button
         uploadButton.setOnClickListener {
             recyclerView.visibility = View.GONE
             uploadButton.visibility = View.GONE
