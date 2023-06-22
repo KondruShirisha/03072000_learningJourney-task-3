@@ -1,5 +1,6 @@
 package com.example.myapplication_task3.activities
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
@@ -15,11 +16,9 @@ class MyAppActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_app_activity)
 
-
         btnViewGallery=findViewById(R.id.btn_view_gallery)
         btnViewLatestLocation=findViewById(R.id.btn_view_latest_location)
         toolbarMyapp=findViewById(R.id.toolbar_my_app_activity)
-
         setupActionBar()
         " ".also { title = it }
         btnViewGallery.setOnClickListener {
@@ -30,14 +29,11 @@ class MyAppActivity : BaseActivity() {
                 )
             )
         }
-
         btnViewLatestLocation.setOnClickListener {
             startActivity(Intent(this, MapActivity::class.java))
-
         }
-
-
     }
+
     private fun setupActionBar(){
         setSupportActionBar(toolbarMyapp)
 
@@ -45,7 +41,6 @@ class MyAppActivity : BaseActivity() {
         if(actionBar != null){
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.ic_backbutton_black)
-
         }
         toolbarMyapp.setNavigationOnClickListener { onBackPressed() }
     }

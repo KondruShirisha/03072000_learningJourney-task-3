@@ -37,7 +37,7 @@
 
         />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/uploadButton"
         android:layout_width="310dp"
         android:layout_height="45dp"
@@ -52,7 +52,6 @@
         app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/images_recycler_view"
-
         />
 
     <LinearLayout
@@ -86,7 +85,7 @@
 
         </FrameLayout>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/chooseButton"
             android:layout_width="310dp"
             android:layout_height="45dp"
@@ -118,7 +117,7 @@
         app:layout_constraintTop_toBottomOf="@id/toolbar_gallery_activity" />
 
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/addImageButton"
         android:layout_width="310dp"
         android:layout_height="45dp"

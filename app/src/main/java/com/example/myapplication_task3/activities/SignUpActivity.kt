@@ -51,7 +51,6 @@ private lateinit var buttonSignUp:Button
         toolbarSignUp.setNavigationOnClickListener { onBackPressed() }
     }
 
-
     /* function to register user to our app using Firebase.*/
     private fun registerUser() {
         val name: String = usernameInputSignUp.text.toString().trim() { it <= ' ' }

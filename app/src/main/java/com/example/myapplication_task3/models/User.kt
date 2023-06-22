@@ -8,13 +8,18 @@ data class User (
     val name: String = "",
     val email: String = "",
     val reenterPassword:String= "",
-    val image: String = ""
-
-        ):Parcelable {
+    val latitude: Double=0.0,
+    val longitude: Double=0.0,
+    val address: String="",
+    val dateTime :String=""
+   ):Parcelable {
     constructor(parcel: Parcel) : this(
         parcel.readString()!!,
         parcel.readString()!!,
         parcel.readString()!!,
+        parcel.readString()!!,
+        parcel.readDouble(),
+        parcel.readDouble(),
         parcel.readString()!!,
         parcel.readString()!!
     )
@@ -24,7 +29,10 @@ data class User (
         writeString(name)
         writeString(email)
         writeString(reenterPassword)
-        writeString(image)
+        writeDouble(latitude)
+        writeDouble(longitude)
+        writeString(address)
+        writeString(dateTime)
     }
 
     override fun describeContents()=0

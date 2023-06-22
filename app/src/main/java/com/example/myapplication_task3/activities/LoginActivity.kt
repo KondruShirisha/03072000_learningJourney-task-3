@@ -1,5 +1,6 @@
 package com.example.myapplication_task3.activities
 
+
 import android.content.Intent
 import android.os.Bundle
 import android.text.TextUtils
@@ -8,10 +9,8 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.Toolbar
 import com.example.myapplication_task3.R
-import com.example.myapplication_task3.models.User
 import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
-
 
 class LoginActivity : BaseActivity() {
      private lateinit var auth: FirebaseAuth
@@ -21,15 +20,14 @@ class LoginActivity : BaseActivity() {
     private lateinit var passwordInputLogIn : TextInputEditText
     private lateinit var btnLoginIn : Button
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-
+    override fun onCreate(savedInstanceState: Bundle?)
+    {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         emailInputLogIn =findViewById(R.id.email_input_log_in)
         passwordInputLogIn = findViewById(R.id.password_input_log_in)
         btnLoginIn=findViewById(R.id.btn_login_in)
-
 
         auth=FirebaseAuth.getInstance()  // create auth instance
 
@@ -40,8 +38,6 @@ class LoginActivity : BaseActivity() {
         btnLoginIn.setOnClickListener {
             logInRegisterUser()
         }
-
-
     }
 
     private fun setupActionBar(){
@@ -70,11 +66,9 @@ class LoginActivity : BaseActivity() {
                         // Calling the FirestoreClass signInUser function to get the data of user from database.
                        // FirestoreClass().loadUserData(this@SignInActivity)
 
-                        Log.d("sign in","signInwithemail:success")
+                        Log.d("sign in","signIn with email:success")
 
                         startActivity(Intent(this, MyAppActivity::class.java))
-
-
 
                     } else {
                         Toast.makeText(
@@ -84,12 +78,8 @@ class LoginActivity : BaseActivity() {
                         ).show()
                     }
                 }
-
-
-
         }
     }
-
 
 
      /* A function to validate entries of new user  */
@@ -109,8 +99,8 @@ class LoginActivity : BaseActivity() {
             }
         }
     }
- // A function to get the user details from the firestore database after authentication.
-    fun logInSuccess(user:User) {
+ // A function to get the user details from the fire store database after authentication.
+    fun logInSuccess() {
         startActivity(Intent(this, MyAppActivity::class.java))
           finish()
     }

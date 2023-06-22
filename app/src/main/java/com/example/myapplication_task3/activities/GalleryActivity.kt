@@ -1,7 +1,9 @@
 package com.example.myapplication_task3.activities
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
@@ -11,10 +13,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
 import androidx.appcompat.widget.Toolbar
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication_task3.Adapter.ImageAdapter
-import com.example.myapplication_task3.R
 import com.example.myapplication_task3.R.*
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FieldValue
@@ -113,6 +116,8 @@ class GalleryActivity : BaseActivity() {
     }
 
 
+
+
     private fun pickImageFromGalleryCamera() {
         val options = arrayOf<CharSequence>("Take Photo", "Choose from Gallery", "Cancel")
         val builder = AlertDialog.Builder(this)
@@ -121,12 +126,18 @@ class GalleryActivity : BaseActivity() {
         builder.setItems(options) { dialog, item ->
             when {
                 options[item] == "Take Photo" -> {
-                    val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-                    startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE)
+                    if (checkCameraPermission()) {
+                        launchCamera()
+                    } else {
+                        requestCameraPermission()
+                    }
                 }
                 options[item] == "Choose from Gallery" -> {
-                    val pickPhoto = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-                    startActivityForResult(pickPhoto, PICK_IMAGE_REQUEST)
+                    if (checkGalleryPermission()) {
+                        launchGallery()
+                    } else {
+                        requestGalleryPermission()
+                    }
                 }
                 options[item] == "Cancel" -> {
                     dialog.dismiss()
@@ -135,6 +146,75 @@ class GalleryActivity : BaseActivity() {
         }
         builder.show()
     }
+
+    private fun checkCameraPermission(): Boolean {
+        val cameraPermission = android.Manifest.permission.CAMERA
+        val result = ContextCompat.checkSelfPermission(this, cameraPermission)
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun checkGalleryPermission(): Boolean {
+        val galleryPermission = android.Manifest.permission.READ_EXTERNAL_STORAGE
+        val result = ContextCompat.checkSelfPermission(this, galleryPermission)
+        return result == PackageManager.PERMISSION_GRANTED
+    }
+
+    private fun requestCameraPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(android.Manifest.permission.CAMERA),
+            CAMERA_PERMISSION_REQUEST_CODE
+        )
+    }
+
+    private fun requestGalleryPermission() {
+        ActivityCompat.requestPermissions(
+            this,
+            arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),
+            GALLERY_PERMISSION_REQUEST_CODE
+        )
+    }
+
+    private fun launchCamera() {
+        val takePicture = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        startActivityForResult(takePicture, REQUEST_IMAGE_CAPTURE)
+    }
+
+    private fun launchGallery() {
+        val pickPhoto =
+            Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        startActivityForResult(pickPhoto, PICK_IMAGE_REQUEST)
+    }
+
+    // Handle the result of the permission request
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        when (requestCode) {
+            CAMERA_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted, launch camera
+                    launchCamera()
+                } else {
+                    // Permission denied
+                    Toast.makeText(this, "Camera permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
+            GALLERY_PERMISSION_REQUEST_CODE -> {
+                if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    // Permission granted, launch gallery
+                    launchGallery()
+                } else {
+                    // Permission denied
+                    Toast.makeText(this, "Gallery permission denied", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
 
     private fun uploadImage() {
         val imageUri = selectedImageUri
@@ -159,14 +239,14 @@ class GalleryActivity : BaseActivity() {
         db.collection("users").document(user!!.uid)
             .update("imageUrls", FieldValue.arrayUnion(imageUrl))
             .addOnSuccessListener {
-                val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_success, null)
+                val dialogView = LayoutInflater.from(this).inflate(layout.dialog_success, null)
 
                 val dialog = AlertDialog.Builder(this)
                     .setView(dialogView)
                     .create()
 
-                dialogView.findViewById<TextView>(R.id.dialog_title)
-                dialogView.findViewById<TextView>(R.id.dialog_message)
+                dialogView.findViewById<TextView>(id.dialog_title)
+                dialogView.findViewById<TextView>(id.dialog_message)
 
                 dialog.show()
 
@@ -181,18 +261,17 @@ class GalleryActivity : BaseActivity() {
                     imageList.add(imageUrl)
                     adapter.notifyDataSetChanged()
                 }, 5000)
-
             }
             .addOnFailureListener {
-                val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_failure, null)
+                val dialogView = LayoutInflater.from(this).inflate(layout.dialog_failure, null)
 
 
                 val dialog = AlertDialog.Builder(this)
                     .setView(dialogView)
                     .create()
 
-                dialogView.findViewById<TextView>(R.id.dialog_title)
-                dialogView.findViewById<TextView>(R.id.dialog_message)
+                dialogView.findViewById<TextView>(id.dialog_title)
+                dialogView.findViewById<TextView>(id.dialog_message)
 
                 dialog.show()
 
@@ -203,15 +282,13 @@ class GalleryActivity : BaseActivity() {
                     uploadButton.visibility = View.GONE
                     uploadContainer.visibility = View.GONE
                     addImageButton.visibility = View.VISIBLE
-
                     imageList.add(imageUrl)
                     adapter.notifyDataSetChanged()
                 }, 5000)
             }
     }
 
-
-    private var selectedImageUri: Uri? = null
+private var selectedImageUri: Uri? = null
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK) {
@@ -223,7 +300,8 @@ class GalleryActivity : BaseActivity() {
                         uploadContainer.visibility = View.GONE
                         chosenImageView.visibility = View.VISIBLE
                         addImageButton.visibility = View.VISIBLE
-                        selectedImageUri = data?.data
+                        // Update the selectedImageUri with the captured image URI
+                        selectedImageUri = saveImageToGallery(imageBitmap)
                     }
                 }
                 PICK_IMAGE_REQUEST -> {
@@ -233,11 +311,24 @@ class GalleryActivity : BaseActivity() {
                         uploadContainer.visibility = View.GONE
                         chosenImageView.visibility = View.VISIBLE
                         addImageButton.visibility = View.VISIBLE
-                        selectedImageUri = data?.data
+                        // Update the selectedImageUri with the picked image URI
+                        selectedImageUri = imageUri
                     }
                 }
+
             }
         }
+    }
+
+    private fun saveImageToGallery(bitmap: Bitmap): Uri? {
+        val contentResolver = applicationContext.contentResolver
+        val imageUri = MediaStore.Images.Media.insertImage(
+            contentResolver,
+            bitmap,
+            "Image",
+            "Image taken from camera"
+        )
+        return Uri.parse(imageUri)
     }
 
 
@@ -256,9 +347,12 @@ class GalleryActivity : BaseActivity() {
 
 
     companion object {
-        private const val PICK_IMAGE_REQUEST = 1
-        private const val REQUEST_IMAGE_CAPTURE=2
+        private const val REQUEST_IMAGE_CAPTURE = 1
+        private const val PICK_IMAGE_REQUEST = 2
+        private const val CAMERA_PERMISSION_REQUEST_CODE = 101
+        private const val GALLERY_PERMISSION_REQUEST_CODE = 102
     }
+
 
 
 

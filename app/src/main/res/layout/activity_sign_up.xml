@@ -176,8 +176,7 @@
 
             </LinearLayout>
 
-            <Button
-
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_sign_up"
                 android:layout_width="310dp"
                 android:layout_height="45dp"
@@ -194,7 +193,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/existing_user"
-
                 />
         </LinearLayout>
     </androidx.cardview.widget.CardView>

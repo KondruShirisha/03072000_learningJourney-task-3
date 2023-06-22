@@ -36,7 +36,6 @@ class FireStoreClass {
             }
     }
 
-
     fun logInUser(activity: LoginActivity){
 
         mFireStore.collection(Constants.USERS)
@@ -49,7 +48,7 @@ class FireStoreClass {
                 val loggedUser = document.toObject(User::class.java)
 
                 if (loggedUser != null) {
-                    activity.logInSuccess(loggedUser)
+                    activity.logInSuccess()
                 }
             }
             .addOnFailureListener { e ->

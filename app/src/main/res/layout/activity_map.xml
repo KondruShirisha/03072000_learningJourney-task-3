@@ -25,25 +25,31 @@
             android:layout_gravity="center"/>
 
     </androidx.appcompat.widget.Toolbar>
+
     <com.google.android.gms.maps.MapView
         android:id="@+id/mapView"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginTop="20dp"
         android:layout_marginBottom="8dp"
-        android:apiKey=""
+        android:apiKey="AIzaSyB4hXp2nPm5wE7PkzPOZjfZIaZ1M4SdLKQ"
         android:background="@color/white"
+        android:enabled="true"
+        android:clickable="true"
+        tools:context=".MapActivity"
         app:layout_constraintTop_toBottomOf="@id/toolbar_map_activity"
         app:layout_constraintBottom_toTopOf="@id/addressTitle"
-        />
+        android:focusable="true" />
 
-    <TextView
+
+
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/addressTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Address"
         android:textStyle="bold"
-        android:textSize="13dp"
+        android:textSize="13sp"
         android:textColor="#C2C2C2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/mapView"
@@ -52,19 +58,22 @@
         android:layout_marginStart="30dp"
        />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
        android:id="@+id/addressText"
-        android:layout_width="296dp"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text=""
-        android:textSize="16dp"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textSize="16sp"
         android:textColor="#000000BC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addressTitle"
-        android:layout_marginStart="30dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="7dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:visibility="visible"
         />
-     <ImageView
+     <androidx.appcompat.widget.AppCompatImageView
          android:id="@+id/location_icon"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
@@ -74,7 +83,7 @@
          app:layout_constraintEnd_toEndOf="parent"
          />
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/dateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -85,21 +94,23 @@
         android:textColor="#C2C2C2"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="60dp"/>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/dateTimeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=""
         android:textSize="16sp"
+        android:textAppearance="?android:textAppearanceMedium"
         android:textColor="#000000BC"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dateTime"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="7dp"/>
+        android:layout_marginTop="7dp"
+        android:focusableInTouchMode="false"
+        android:visibility="visible"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_update_location_map_activity"
         android:layout_width="310dp"
         android:layout_height="45dp"
